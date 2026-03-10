@@ -4,7 +4,7 @@
 문제 설명:
 - 삽입 정렬(Insertion Sort) 알고리즘을 구현합니다.
 - 정렬된 부분에 새로운 원소를 적절한 위치에 삽입하는 방식입니다.
-- 카드 게임에서 손에 든 카드를 정렬하는 방식과 유사합니다.
+- 카드 게임에서 손에 든 카드를 정렬하는 방식과 유사합니다. 그러나, 값을 옆으로 한 칸씩 옮기는게 포인트
 
 입력:
 - arr: 정렬되지 않은 정수 배열
@@ -17,7 +17,7 @@
 출력: [5, 6, 11, 12, 13]
 
 힌트:
-- 첫 번째 원소는 이미 정렬되어 있다고 가정
+- 첫 번째 원소는 이미 정렬되어 있다고 가정 
 - 두 번째 원소부터 시작하여 앞의 정렬된 부분에 삽입
 - 삽입 위치를 찾기 위해 뒤에서 앞으로 비교
 """
@@ -40,9 +40,17 @@ def insertion_sort(arr):
     ## key를 삽입할 위치 찾기
     ## j는 key 바로 앞 인덱스부터 시작
     ## arr[j] > key인 동안 원소를 오른쪽으로 이동
-    ## 찾은 위치에 key 삽입
-    pass
+    ## 찾은 위치에 key 삽입 
     
+    for i in range(1, n) : # hand 선택자 
+        key = arr[i]
+        j = i -1 # 바꿀놈 선택자 
+        while j >= 0 and arr[j] > key : # hand보다 왼쪽이 크면. 바꿔야지.
+           arr[j+1] = arr[j] # 오른쪽 한칸. 삽입할 자리 확보.
+           j-= 1 # 한 칸 왼쪽으로 가서 또 비교
+        arr[j+1] = key # 마지막에 하나를 빼줄거면 이렇게 하는게 맞지
+    
+
     return arr
 
 def insertion_sort_with_steps(arr):
@@ -60,7 +68,10 @@ def insertion_sort_with_steps(arr):
         print(f"정렬된 부분: {arr[:i]}")
         
         # TODO: 삽입 위치 찾기 및 이동
-        pass
+        while j>= 0 and arr[j] > key :
+            arr[j+1] = arr[j]
+            j-= 1
+            arr[j+1] = key
         
         arr[j + 1] = key
         print(f"삽입 후: {arr}")
