@@ -58,15 +58,16 @@ def is_palindrome(s):
     # 방법2: 양 끝 인덱스를 이용한 투포인터 방식? 
     
     #방법 1
-    reverse_s = s[::-1]
-    for i in range(len(s)) :
-        if s[i] != reverse_s[i] :
-            return False
-
+    # reverse_s = s[::-1]
+    # for i in range(len(s)) :
+    #     if s[i] != reverse_s[i] :
+    #         return False
+    
+    if s == s[::-1] :
+        return True
         
 
-    return True
-    #return False
+    return False
 
 # 테스트 케이스
 if __name__ == "__main__":

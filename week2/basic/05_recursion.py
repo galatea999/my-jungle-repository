@@ -38,7 +38,6 @@ def factorial(n):
         return 1
     
     # TODO: recursive case를 작성하세요
-    pass
     if n > 1 :
         return n * factorial(n-1)
 
