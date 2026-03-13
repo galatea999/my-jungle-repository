@@ -46,7 +46,7 @@ def combinations(n, k):
         """
         # TODO: base case - k개를 모두 선택했으면 결과에 추가. 이게 Base Case라고.. 그래. 알겠어.. 오키. 
         if len(current_combination) == k :
-            result.append(current_combination.copy())
+            result.append(current_combination.copy()) #copy로 넣는 이유 : 
             return
     
         # TODO: start부터 n까지 숫자를 하나씩 시도
