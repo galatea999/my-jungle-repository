@@ -23,7 +23,7 @@
 - 왼쪽과 오른쪽의 최댓값 중 큰 값 반환
 """
 
-def find_max_divide_conquer(arr, left, right):
+def find_max_divide_conquer(arr, left, right): #left right 값도 굳이 넣을 필요 없는거 아니야? 
     """
     분할 정복으로 최댓값 찾기
     
@@ -36,19 +36,30 @@ def find_max_divide_conquer(arr, left, right):
         최댓값
     """
     # TODO: base case - 원소가 하나면 그 값 반환
-    pass
+    if len(arr) == 1 :
+        return arr[0]
     
     # TODO: 중간 지점 계산
-    pass
+    if (left+right) % 2 == 0 : #홀수
+        middle_point = (left + right) // 2 
+        
+        
+
+
+    else :
+        middle_point = (left + right - 1) // 2 
     
     # TODO: 왼쪽 절반의 최댓값
-    pass
+    max_left = max(arr[:middle_point])
         
     # TODO: 오른쪽 절반의 최댓값
-    pass
+    max_right = max(arr[middle_point:])
     
     # TODO: 둘 중 큰 값 반환
-    pass
+    if max_left > max_right : # 더 깔끔하게 쓸 수 있을 것 같은데.
+        return max_left
+    else : 
+        return max_right
 
 # 테스트 케이스
 if __name__ == "__main__":

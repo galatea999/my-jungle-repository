@@ -38,24 +38,30 @@ class LinkedList:
         new_node = Node(data)
         
         # TODO: 리스트가 비어있으면 head를 new_node로 설정
-        pass
+        if not self.head :
+            self.head = new_node #베이스 케이스
+            return #미친. 리턴이시잖아 !!
+            
         
-        # TODO: 마지막 노드 찾기
-        pass
-        
-        # TODO: 마지막 노드의 next를 new_node로 설정
-        pass
+        # TODO: 마지막 노드 찾은 후 그것의 next에 새로운 노드를 추가
+        # 노드를 가리키는 단순 포인터 변수를 하나 만들어서 이용 
+        last_node_pointer = self.head
+        while last_node_pointer.next :
+            last_node_pointer = last_node_pointer.next
+            #마지막 노드를 찾았어 이제 뭐 해야하지?
+        last_node_pointer.next = new_node
     
     def print_list(self):
         """리스트의 모든 값 출력"""
         values = []
         
         # TODO: head부터 시작
-        pass
+        current = self.head
         
         # TODO: 끝까지 순회하며 값 수집
-        pass
-        
+        while current : 
+            values.append(current.data)
+            current = current.next
         return values
 
 # 테스트 케이스
@@ -79,5 +85,4 @@ if __name__ == "__main__":
     ll2.append(40)
     result2 = ll2.print_list()
     print(f"리스트: {result2}")
-
 
