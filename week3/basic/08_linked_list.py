@@ -48,10 +48,7 @@ class LinkedList:
         last_node_pointer = self.head
         while last_node_pointer.next :
             last_node_pointer = last_node_pointer.next
-            #마지막 노드를 찾았어 이제 뭐 해야하지?
         last_node_pointer.next = new_node
-    
-    def delete(self, d) :
 
     
     def print_list(self):
