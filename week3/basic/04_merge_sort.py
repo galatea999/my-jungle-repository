@@ -17,14 +17,14 @@
 출력: [3, 9, 10, 27, 38, 43, 82]
 
 힌트:
-- 배열을 절반으로 분할 (재귀)
+- 배열을 절반으로 분할 (재귀): 언제까지 절반으로 나누느냐가 중요할 것 같은데. 각원소가 하나가 될때까지?
 - 각 부분을 재귀적으로 정렬
 - 정렬된 두 부분을 병합
 """
 
 def merge(arr, left, mid, right):
     """
-    두 개의 정렬된 부분 배열을 병합하는 함수
+    각각!! 정렬된 두 덩어리를 하나의 정렬된 덩어리로 병합하는 함수
     
     Args:
         arr: 원본 배열
@@ -32,21 +32,38 @@ def merge(arr, left, mid, right):
         mid: 왼쪽 부분의 끝 인덱스
         right: 오른쪽 부분의 끝 인덱스
     """
-    # TODO: 왼쪽과 오른쪽 부분 배열을 임시 배열로 복사
-    pass
+    # TODO: 왼쪽과 오른쪽 부분 배열을 임시 배열로 복사 : 원본에서 바로 하면 정렬되지 않는 부분이 생기기에
+    left_arr = arr[left:mid+1]
+    right_arr = arr[mid+1:right+1]
     
     # TODO: 두 배열을 병합
     pass
     
     
-    # TODO: left_arr와 right_arr를 비교하며 작은 값을 arr에 복사
-    pass
+    # TODO: left_arr와 right_arr를 비교하며 작은 값을 arr에 복사 : 정렬된 부분을 하나씩 덮어쓰기
+    i=0 
+    j=0
+    k=left #k는 여기까지 정렬이 되었어요
+    while i < len(left_arr) and j <len(right_arr) :
+        if left_arr[i] < right_arr[j] :
+            arr[k] = left_arr[i]
+            i+=1
+        else :
+            arr[k] = right_arr[j]
+            j+=1
+        k+=1
+
+                
+
     
     # TODO: 남은 원소들을 복사
     # left_arr에 남은 원소가 있으면 복사
     # right_arr에 남은 원소가 있으면 복사
-    pass
-
+    if i < len(left_arr) :
+        arr[k:k+len(left_arr[i:])] = left_arr[i:]
+        
+    elif j < len(right_arr) :
+        arr[k:k+len(right_arr[j:])] = right_arr[j:]        
 def merge_sort_helper(arr, left, right):
     """
     머지 정렬 재귀 함수
@@ -56,12 +73,18 @@ def merge_sort_helper(arr, left, right):
         left: 시작 인덱스
         right: 끝 인덱스
     """
-    # TODO: base case - left가 right보다 작을 때만 정렬
+    # TODO: base case - left가 right보다 작을 때만 정렬 => pythonic하게 쓰려면, 아무것도 안 하는 것에 조건을 걸 필요 없이, 조건에 해당할때만 무언가 하게 쓰기
     ## 중간 지점 계산
     ## 왼쪽 절반 재귀 정렬
     ## 오른쪽 절반 재귀 정렬
     ## 정렬된 두 절반을 병합
-    pass
+    if left < right : 
+        middle_point = (left + right) // 2 
+        
+        merge_sort_helper(arr,left,middle_point)
+        merge_sort_helper(arr,middle_point + 1,right)
+        merge(arr,left, middle_point, right)
+
 
 def merge_sort(arr):
     """
@@ -73,8 +96,8 @@ def merge_sort(arr):
     Returns:
         정렬된 배열
     """
-    if len(arr) > 1:
-        merge_sort_helper(arr, 0, len(arr) - 1)
+    if len(arr) > 1: 
+        merge_sort_helper(arr, 0, len(arr) - 1) #len(arr)-1이므로 인덱스를 얘기함.
     return arr
 
 # 테스트 케이스

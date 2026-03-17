@@ -40,14 +40,9 @@ def find_max_divide_conquer(arr, left, right): #left right 값도 굳이 넣을 
         return arr[0]
     
     # TODO: 중간 지점 계산
-    if (left+right) % 2 == 0 : #홀수
-        middle_point = (left + right) // 2 
-        
-        
 
+    middle_point = (left + right) // 2 
 
-    else :
-        middle_point = (left + right - 1) // 2 
     
     # TODO: 왼쪽 절반의 최댓값
     max_left = max(arr[:middle_point])

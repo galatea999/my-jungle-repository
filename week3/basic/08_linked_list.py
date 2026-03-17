@@ -24,7 +24,7 @@
 
 class Node:
     """연결 리스트의 노드"""
-    def __init__(self, data):
+    def __init__(self, data): #생성자. 만들자마자 바로 되는 
         self.data = data
         self.next = None
 
@@ -51,6 +51,9 @@ class LinkedList:
             #마지막 노드를 찾았어 이제 뭐 해야하지?
         last_node_pointer.next = new_node
     
+    def delete(self, d) :
+
+    
     def print_list(self):
         """리스트의 모든 값 출력"""
         values = []
@@ -61,7 +64,7 @@ class LinkedList:
         # TODO: 끝까지 순회하며 값 수집
         while current : 
             values.append(current.data)
-            current = current.next
+            current = current.next #여기서 알아서 none이 된다는 포인트가 중요했음
         return values
 
 # 테스트 케이스
