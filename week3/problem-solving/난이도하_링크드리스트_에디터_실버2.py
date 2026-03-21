@@ -50,16 +50,16 @@ class LinkedList :
         if self.cursor == self.tail :
             return
         
-        self.cursor = self.cursor.next
+        self.cursor = self.cursor.next # A B C D 커서가 글자의 오른쪽을 뜻한다
 
-    def B(self) :
+    def B(self) : # ABCD
         #더미데이터를 가리키고 있는 경우 => 무시
         if self.cursor == self.head :
             return
         
-        #마지막을 지울 경우
+        #마지막을 지울 경우 
         if self.cursor == self.tail :
-            self.cursor.prev.next = None
+            self.cursor.prev.next = None 
             self.cursor = self.cursor.prev
             self.tail = self.cursor
             return
@@ -82,14 +82,7 @@ class LinkedList :
             self.tail = new
 
         self.cursor = new
-    # def P(self, char) :
-    #     new = Node(char)
-        
-    #     new.next = self.cursor.next
-    #     new.prev = self.cursor
-    #     self.cursor.next.prev = new
-    #     self.cursor.next = new
-    #     self.cursor = self.next
+ 
 
     def print_list(self) :
         values = []
@@ -138,7 +131,8 @@ print(''.join(ll.print_list()))
 
 """
 
-핵심아이디어 : 
-병목 :
+핵심아이디어 : 링크드 리스트인데, 커서가 앞뒤로 왔다갔다해야 하니 prev까지 구현해서 양방향으로 만들어야했음.
+그래도 한 번 해봐서 좋은듯 
+병목 : 커서의 아이디어. 이게 왼쪽을 가리키느냐, 오른 쪽을 가리키느냐? 그 중에서도 앞뒤 예외처리, 
 
 """

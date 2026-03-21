@@ -43,19 +43,34 @@ def bfs(graph, start):
     Returns:
         방문 순서 리스트
     """
+    #1. 결과 값으로 보낼 리스트와 탐색용으로 쓸 데큐 만듦
     visited = []
-    
-    # TODO: 큐 생성 및 시작 정점 추가
-    ## 방문한 정점 집합
-    pass
+    will_visit = deque()
 
-    # TODO: 큐가 빌 때까지 반복
-    ## 큐에서 정점 꺼내기
-    ## 인접한 정점들 확인
-    ## 방문하지 않은 정점이면 큐에 추가
-    pass
+    # 2. 여정을 시작함 
+    visited.append(start)
+    will_visit.append(start)
+
+    # 3. deque에는 앞으로 방문할 곳만 있어야함.
+    #  지금 방문한 곳은 queue에서 뱉어서 방문중임
     
+    #graph은 dict이므로, visiting을 key로 삼아 연결돼있는 것들을 순회
+    #BFS이므로, 가까이 있는 것들부터 방문지로 삼음 => will_visit에 추가
+    #!!! 다만, 이미 다녀온 곳은 가지 않음 => if not visited 조건 추가
+    # visited 결과 값에도 넣음
+    # !!! wii_visit deque가 빌때까지 반복
+    
+    while will_visit:
+        visiting = will_visit.popleft()
+        for vertex in graph[visiting] :
+            if not vertex in visited :
+                will_visit.append(vertex)
+                visited.append(vertex)
+
     return visited
+    
+
+ 
 
 # 테스트 케이스
 if __name__ == "__main__":

@@ -41,12 +41,16 @@ def create_graph(vertices, edges, directed=False):
         그래프 딕셔너리
     """
     # TODO: 빈 그래프 초기화
-    pass
+    #딕녀서리 컴프레헨션 무섭다...!! 이러면 0,1,2,3으로 생성이 되긴 하지만 이건 우연 아닌가? 
+    graph = {vertex: [] for vertex in range(vertices)}
     
     # TODO: 간선 추가
     ## 간선 추가 (u에서 v로)
     ## 무방향 그래프면 반대 방향도 추가
-    pass
+    for u,v in edges :
+        graph[u].append(v)
+        if not directed :
+            graph[v].append(u)
     
     return graph
 
