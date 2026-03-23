@@ -39,24 +39,39 @@ def topological_sort(vertices, edges):
     Returns:
         위상 정렬 순서
     """
-    # TODO: 그래프와 진입 차수 초기화
-    pass
-    
-    # TODO: 그래프 구성 및 진입 차수 계산
-    pass
-    
-    # TODO: 진입 차수가 0인 정점들을 큐에 추가
-    pass
-    
+    #1. 주어진 관계로부터 그래프 그리기. 차수 또한 따로 생성. 위상정렬이라면 차수 변수는 따로 필요함
+    graph = [[] for _ in range(vertices)]
+
+    indegree = [0] * vertices
+
+    for start, end in edges : 
+        graph[start].append(end)
+        indegree[end] += 1
+    #2. queue를 만들고 차수가 0인것들 추가    
+    queue = deque()
     result = []
-    
-    # TODO: 큐가 빌 때까지 반복
-    ## 큐에서 정점 꺼내기
-    ## 인접한 정점들의 진입 차수 감소
-    pass
+    for i in range(vertices) :
+        if indegree[i] == 0 : 
+            queue.append(i) #차수가 0인것들을 추가 
+    #3. queue에서 하나씩 뱉고, result에 추가하고, 인접 정점들의 차수를 빼고, 0인건 다시 queue로 추가
+    while queue :
+        currnet = queue.popleft()
+        result.append(currnet)
+
+        #인접 정점들에서 차수를 하나씩 빼고, 0인 놈은 queue로 추가
+        for vertex in graph[currnet] : 
+            indegree[vertex] -= 1
+            if indegree[vertex] == 0 :
+                queue.append(vertex) 
+        
+
     
     return result
+    
+    """
+    구조를 보자. 3단계 구조로 나눠서 보자.
 
+    """
 # 테스트 케이스
 if __name__ == "__main__":
     # 과목 선수과목 예제
