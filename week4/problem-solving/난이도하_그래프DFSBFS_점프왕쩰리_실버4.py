@@ -33,30 +33,25 @@ DFS는 그러면, input은 현재 위치(리스트 두개의 인덱스?)로 받�
 '''
 #입력값을 받고 맵을 만듦
 n = int(input())
-map = [] * n
-for i in range(n) :
-    map[i].append(input()) #이건 제대로 작동하는지 확인해봐야함
-inital_location = [1][1] #튜플로 받는게 낫다고 함 
+board = [list(map(int, input().split())) for _ in range(n)]
 
-def jelly_win(map) :
+def can_jelly_win(board) :
 
-    def dfs(location) :
-        now = map(inital_location)
-        dfs() # 오른쪽으로 가는 dfs
-        dfs() # 아래쪽으로 가는 dfs
+    def move(x, y) : 
+        if x >= n or y >= n :
+            return False
 
+        num = board[x][y]
+        if num == -1 : 
+            return True 
+        if num == 0: # 이 조건도 중요했음. 이 케이스를 잡는 것!!
+            return False
         
-        if now == 
-        return 
-
-
-    #DFS의 결과값이 True이면
-    if result :
-        return
-    
-    else :
-        return
-    
+        return move(x, y+num) or move(x+num, y) #이게 핵심 !! 재귀구조중에 하나라도 성공하면, 그 함수부터 위로 쭉 성공값을 반환해 최초까지 돌아옴!
 
 
     
+    return "HaruHaru" if move(0, 0) else "Hing"
+
+
+print(can_jelly_win(board))
