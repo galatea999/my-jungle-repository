@@ -37,7 +37,7 @@ DP 문제 풀이 순서:
 
 def climb_stairs(n):
     """
-    계단 오르기 (상향식 DP)
+    계단 오르기 (상향식 DP) 
     
     Args:
         n: 계단의 수
@@ -46,17 +46,38 @@ def climb_stairs(n):
         n번째 계단까지 오르는 방법의 수
     """
     # TODO: 특별한 경우 처리
-    pass
+    # 뭔놈의경우를 dp 생성하기 전에도 먼저 처리가 가능하냐. 계산해서 올리려면 나중에 해야하지 않냐
+    #아. 작은수가 들어오는 경우를 처리를 안 해주면 내려가면서 index out of range가 떠버리네
+    if n == 0 :
+        return 1
+    if n == 1 :
+        return 1
+    if n == 2 : 
+        return 2
+    # 이런 풀이도 가능하다. 배열도 쓰지 않고 공간복잡도가 O(1)로 훨씬 효율적
+    a, b = 1, 2
+    for _ in range(3, n+1) :
+            a, b = b, a+b
     
-    
+    return b
+
+
+"""
     # TODO: dp 배열 생성 및 초기화
-    pass
+    dp = [0]*(n+1)
+    
     
     # TODO: 작은 문제부터 차례로 계산
-    pass
+    dp[0] = 1
+    dp[1] = 1
+    dp[2] = 2
+
+    for i in range(3, n+1) :
+        dp[i] = dp[i-1] + dp[i-2]
     
     return dp[n]
-
+""" 
+    
 # 테스트 케이스
 if __name__ == "__main__":
     # 테스트 케이스 1

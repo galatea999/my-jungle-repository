@@ -42,13 +42,31 @@ def make_change_greedy(change, coins):
     """
     result = {}
     total_coins = 0
-    
+
     # TODO: 각 동전에 대해 반복
     ## 현재 동전으로 거슬러줄 수 있는 개수 계산    
     ## 개수가 0보다 크면 결과에 추가
-    pass
+    for coin in coins :
+        number = change // coin
+        change_all = change % coin
+        total_coins += number
+        if number > 0 :
+            result[coin]= number
+        change = change_all
+        
     
     return total_coins, result
+
+"""
+그러면 그리디 알고리즘에서 중요한건,
+이게 왜 매 순간 최선의 선택인가? 라는 거겠네. 이거는 문제를 많이 풀어봐야 알 수 있을 것 같음.
+케이스에 따라 너무나 다르니. 
+나는 지금 알고리즘을 공부중이고, 결국 알고리즘은 전부 "어떻게 생각할 것인가"의 문제라는걸 잊지 말자. 
+
+
+이 코드의 구조는 "문제를 한 단계 줄여도 되는가?"
+매 단계에서 현재 단위로 최대한 먹고, 남은건 한단계 축소한다 .. .? 
+"""
 
 # 테스트 케이스
 if __name__ == "__main__":
