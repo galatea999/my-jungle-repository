@@ -36,7 +36,7 @@ def select_meetings(meetings):
     if not meetings : 
         return 0
     
-    # TODO: 종료 시간 기준으로 정렬 
+    # TODO: 종료 시간 기준으로 정렬  #왜 종료시간을 기준으로 정렬을 하지? => 그게 최선의 선택일거란 그런 믿음이 있는거야 
     #Input이 list이므로 sort를 쓰는게 나을듯 
     meetings.sort(key= lambda x:x[1])
     
@@ -46,9 +46,13 @@ def select_meetings(meetings):
     selected.append(meetings[0])
     
     # TODO: 나머지 회의들 확인
-    ## 이전 회의가 끝난 후 시작하는 회의만 선택 =>  > 현재 시작시간 
-    #재귀로 들어가야 하지 않을까? 
-
+    ## 이전 회의가 끝난 후 시작하는 회의만 선택
+    """ 
+    selected[-1]의 [1]과 meetings[0]을 비교해서, 후자가 크면 바로 추가 
+    """
+    for meet in meetings :
+        if selected[-1][1] <= meet[0] :
+            selected.append(meet)
     
     return len(selected), selected
 
